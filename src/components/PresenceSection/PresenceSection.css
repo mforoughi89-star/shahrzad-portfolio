@@ -1,0 +1,77 @@
+.presence {
+  padding: 8rem 5vw;
+  text-align: center;
+  background: var(--bg-primary, #050708);
+  border-top: 1px solid rgba(245, 243, 238, 0.06);
+}
+
+.presence-eyebrow {
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: 0.72rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent-gold, var(--gold, #c8a76a));
+}
+
+.presence-title {
+  font-family: var(--font-serif, 'Cormorant Garamond', serif);
+  font-weight: 400;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  color: var(--text-primary, #f5f3ee);
+  margin: 1rem 0 0;
+}
+
+.presence-line {
+  display: block;
+  width: 80px;
+  height: 1px;
+  margin: 2rem auto 4rem;
+  background: var(--accent-gold, var(--gold, #c8a76a));
+}
+
+.presence-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.presence-city {
+  text-align: center;
+}
+
+.presence-time {
+  display: block;
+  font-family: var(--font-serif, 'Cormorant Garamond', serif);
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-primary, #f5f3ee);
+}
+
+.presence-name {
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: 0.85rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--text-primary, #f5f3ee);
+  margin: 0.75rem 0 0.25rem;
+}
+
+.presence-gmt {
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: var(--text-secondary, rgba(245, 243, 238, 0.7));
+}
+
+@media (max-width: 768px) {
+  .presence {
+    padding: 5rem 6vw;
+  }
+
+  .presence-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}

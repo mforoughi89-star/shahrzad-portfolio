@@ -1,0 +1,152 @@
+.about-section {
+  padding: 100px 0;
+  background: #0b0d10;
+}
+
+.about-container {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 1px minmax(320px, 0.9fr);
+  gap: clamp(44px, 7vw, 82px);
+  align-items: start;
+}
+
+.about-content {
+  padding-right: 16px;
+}
+
+.about-bio {
+  font-size: 18px;
+  line-height: 1.85;
+  margin-bottom: 48px;
+  color: rgba(245, 243, 238, 0.84);
+}
+
+.comp-card {
+  margin-bottom: 48px;
+}
+
+.comp-card-title,
+.collaborations-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 22px;
+}
+
+.comp-card-list {
+  display: grid;
+  gap: 0;
+  max-width: 520px;
+  border-top: 1px solid rgba(245, 243, 238, 0.12);
+}
+
+.comp-card-item {
+  display: grid;
+  grid-template-columns: minmax(110px, 0.78fr) minmax(0, 1fr);
+  gap: 24px;
+  align-items: center;
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(245, 243, 238, 0.12);
+}
+
+.comp-card-item dt {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(200, 167, 106, 0.92);
+}
+
+.comp-card-item dd {
+  margin: 0;
+  font-size: clamp(18px, 2vw, 22px);
+  font-family: 'Cormorant Garamond', serif;
+  color: var(--text-primary);
+  text-align: right;
+  text-transform: capitalize;
+  letter-spacing: 0.02em;
+}
+
+.collaborations-list {
+  list-style: none;
+  display: grid;
+  gap: 12px;
+}
+
+.collaborations-list li {
+  font-size: 16px;
+  color: rgba(245, 243, 238, 0.8);
+  padding-left: 22px;
+  position: relative;
+}
+
+.collaborations-list li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+}
+
+.about-divider {
+  width: 1px;
+  min-height: 720px;
+  background: linear-gradient(to bottom, transparent, var(--gold) 20%, var(--gold) 80%, transparent);
+}
+
+.about-image-wrapper {
+  position: sticky;
+  top: 112px;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border: 1px solid rgba(245, 243, 238, 0.1);
+}
+
+.about-lazy-image,
+.about-portrait {
+  width: 100%;
+  height: 100%;
+}
+
+.about-lazy-image img,
+.about-portrait {
+  display: block;
+}
+
+.about-image,
+.about-portrait {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  filter: grayscale(0.14) contrast(1.03);
+}
+
+@media (max-width: 840px) {
+  .about-section {
+    padding: 84px 0;
+  }
+
+  .about-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .about-content {
+    padding-right: 0;
+  }
+
+  .about-divider {
+    display: none;
+  }
+
+  .about-image-wrapper {
+    position: relative;
+    top: auto;
+    max-width: 430px;
+    width: 100%;
+    margin: 0 auto;
+  }
+}

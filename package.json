@@ -1,0 +1,21 @@
+{
+  "name": "shahrzad-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@vitejs/plugin-react": "latest",
+    "vite": "latest",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "gsap": "^3.12.5",
+    "framer-motion": "^11.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "vite --host 0.0.0.0",
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0"
+  }
+}

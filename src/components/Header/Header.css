@@ -1,0 +1,64 @@
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px clamp(18px, 4vw, 56px);
+  transition: background 0.3s ease, border-color 0.3s ease, backdrop-filter 0.3s ease;
+  border-bottom: 1px solid transparent;
+}
+
+.site-header.scrolled {
+  background: rgba(5, 7, 8, 0.76);
+  border-color: rgba(245, 243, 238, 0.08);
+  backdrop-filter: blur(18px);
+}
+
+.brand-mark {
+  border: none;
+  background: transparent;
+  color: var(--text-primary);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 25px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(14px, 2.2vw, 34px);
+}
+
+.site-nav button {
+  border: none;
+  background: transparent;
+  color: rgba(245, 243, 238, 0.74);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: color 0.25s ease;
+}
+
+.site-nav button:hover {
+  color: var(--gold);
+}
+
+@media (max-width: 720px) {
+  .site-header {
+    padding: 18px 16px;
+  }
+
+  .brand-mark {
+    font-size: 21px;
+  }
+
+  .site-nav {
+    display: none;
+  }
+}

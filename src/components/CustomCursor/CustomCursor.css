@@ -1,0 +1,32 @@
+.custom-cursor {
+  width: 20px;
+  height: 20px;
+  border: 1px solid #c8a76a;
+  border-radius: 50%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: width 0.25s ease, height 0.25s ease, opacity 0.25s ease, background 0.25s ease;
+}
+
+.custom-cursor.is-active {
+  width: 34px;
+  height: 34px;
+  background: rgba(200, 167, 106, 0.08);
+}
+
+@media (pointer: fine) and (min-width: 1024px) {
+  body:hover .custom-cursor {
+    opacity: 1;
+  }
+}
+
+@media (pointer: coarse), (max-width: 1023px) {
+  .custom-cursor {
+    display: none;
+  }
+}
