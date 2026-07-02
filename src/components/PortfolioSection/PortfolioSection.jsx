@@ -86,17 +86,43 @@ const PortfolioSection = ({ chapters }) => {
     window.addEventListener('load', refreshOnLoad);
 
     const ctx = gsap.context(() => {
-      gsap.to(track, {
-        x: () => -getScrollDistance(),
-        ease: 'none',
-        scrollTrigger: {
-          trigger: sectionEl,
-          pin: true,
-          scrub: 1,
-          end: () => `+=${getScrollDistance()}`,
-          invalidateOnRefresh: true,
-        },
+      const media = gsap.matchMedia();
+
+      media.add('(min-width: 769px)', () => {
+        const isTouch = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+
+        if (isTouch) {
+          gsap.set(track, { clearProps: 'transform' });
+          ScrollTrigger.refresh();
+          return undefined;
+        }
+
+        const animation = gsap.to(track, {
+          x: () => -getScrollDistance(),
+          ease: 'none',
+          scrollTrigger: {
+            trigger: sectionEl,
+            pin: true,
+            scrub: 1,
+            end: () => `+=${getScrollDistance()}`,
+            invalidateOnRefresh: true,
+          },
+        });
+
+        refreshOnLoad();
+
+        return () => {
+          animation.scrollTrigger?.kill();
+          animation.kill();
+        };
       });
+
+      media.add('(max-width: 768px)', () => {
+        gsap.set(track, { clearProps: 'transform' });
+        ScrollTrigger.refresh();
+      });
+
+      return () => media.revert();
     }, sectionRef);
 
     refreshOnLoad();
@@ -104,6 +130,7 @@ const PortfolioSection = ({ chapters }) => {
     return () => {
       window.removeEventListener('load', refreshOnLoad);
       ctx.revert();
+      ScrollTrigger.refresh();
     };
   }, [urbanChapter.images.length]);
 

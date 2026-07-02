@@ -176,6 +176,7 @@
   }
 
   .hero-text {
+    align-self: start;
     padding-bottom: 0;
   }
 
@@ -184,6 +185,11 @@
     max-width: 430px;
     width: 100%;
     margin: 0 auto;
+  }
+
+  .hero-caption,
+  .hero-image-caption {
+    display: none;
   }
 
   .hero-cta {

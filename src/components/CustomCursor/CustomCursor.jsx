@@ -1,15 +1,25 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import './CustomCursor.css';
 
 const CustomCursor = () => {
   const cursorRef = useRef(null);
+  const [enabled, setEnabled] = useState(false);
+
+  useEffect(() => {
+    const pointerQuery = window.matchMedia('(pointer: fine) and (hover: hover) and (min-width: 1024px)');
+    const updateEnabled = () => setEnabled(pointerQuery.matches);
+
+    updateEnabled();
+    pointerQuery.addEventListener('change', updateEnabled);
+
+    return () => pointerQuery.removeEventListener('change', updateEnabled);
+  }, []);
 
   useEffect(() => {
     const cursor = cursorRef.current;
-    const finePointer = window.matchMedia('(pointer: fine)').matches;
 
-    if (!cursor || !finePointer) {
+    if (!cursor || !enabled) {
       return undefined;
     }
 
@@ -38,7 +48,11 @@ const CustomCursor = () => {
         element.removeEventListener('mouseleave', removeActiveState);
       });
     };
-  }, []);
+  }, [enabled]);
+
+  if (!enabled) {
+    return null;
+  }
 
   return <div ref={cursorRef} className="custom-cursor" aria-hidden="true" />;
 };
