@@ -19,16 +19,17 @@
 }
 
 .chapter-title {
-  font-size: clamp(34px, 5vw, 58px);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
   margin-bottom: 14px;
   font-weight: 300;
   letter-spacing: 0.01em;
+  color: var(--accent-gold, var(--gold));
 }
 
 .chapter-description {
-  font-size: 18px;
+  font-size: clamp(0.95rem, 1.8vw, 1.1rem);
   line-height: 1.7;
-  color: rgba(245, 243, 238, 0.7);
+  color: rgba(255, 255, 255, 0.75);
 }
 
 .chapter-grid {
