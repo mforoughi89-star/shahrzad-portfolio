@@ -10,14 +10,16 @@ export function useImageReveal(scopeRef) {
       gsap.utils.toArray('.img-reveal').forEach((element) => {
         gsap.fromTo(
           element,
-          { clipPath: 'inset(0 100% 0 0)' },
+          { autoAlpha: 0, y: 18 },
           {
-            clipPath: 'inset(0 0% 0 0)',
-            duration: 1.4,
-            ease: 'power4.inOut',
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.65,
+            ease: 'power2.out',
+            clearProps: 'transform,opacity,visibility',
             scrollTrigger: {
               trigger: element,
-              start: 'top 80%',
+              start: 'top 86%',
               once: true,
             },
           },

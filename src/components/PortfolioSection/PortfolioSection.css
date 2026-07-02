@@ -19,12 +19,13 @@
 }
 
 .chapter-urban {
-  height: 100vh;
+  min-height: auto;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin-bottom: 100px;
+  padding: 24px 0 40px;
   background: var(--bg-primary, #050708);
 }
 
@@ -64,24 +65,43 @@
   gap: 2.5rem;
   padding-left: 5vw;
   padding-right: 5vw;
-  will-change: transform;
-  width: max-content;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scroll-snap-type: x proximity;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(200, 167, 106, 0.55) rgba(245, 243, 238, 0.06);
+}
+
+.chapter-track::-webkit-scrollbar {
+  height: 8px;
+}
+
+.chapter-track::-webkit-scrollbar-track {
+  background: rgba(245, 243, 238, 0.06);
+}
+
+.chapter-track::-webkit-scrollbar-thumb {
+  background: rgba(200, 167, 106, 0.55);
 }
 
 .track-item,
 .chapter-track-item {
-  flex: 0 0 auto;
-  width: 400px;
+  flex: 0 0 min(400px, 78vw);
+  width: min(400px, 78vw);
   margin: 0;
+  scroll-snap-align: center;
 }
 
 .track-item img,
 .chapter-track-image {
   width: 100%;
-  height: 560px;
+  aspect-ratio: 5 / 7;
+  height: auto;
+  min-height: 0;
   object-fit: cover;
   display: block;
   border: 1px solid rgba(245, 243, 238, 0.08);
+  background: rgba(245, 243, 238, 0.045);
   filter: grayscale(0.12) saturate(0.95);
 }
 
@@ -106,8 +126,9 @@
 
   .chapter-urban {
     height: auto;
-    min-height: 100vh;
+    min-height: auto;
     margin-bottom: 84px;
+    padding: 0 0 20px;
     justify-content: center;
   }
 
@@ -128,12 +149,13 @@
 
   .track-item,
   .chapter-track-item {
+    flex: 0 0 280px;
     width: 280px;
     scroll-snap-align: start;
   }
 
   .track-item img,
   .chapter-track-image {
-    height: 400px;
+    height: auto;
   }
 }
