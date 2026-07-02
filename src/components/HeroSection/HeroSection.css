@@ -29,7 +29,7 @@
 .hero-text {
   z-index: 2;
   align-self: end;
-  padding-bottom: 3.5rem;
+  padding-bottom: 2.1rem;
   text-align: left;
   opacity: 1;
   visibility: visible;
@@ -153,8 +153,8 @@
 .hero-caption,
 .hero-image-caption {
   position: absolute;
-  bottom: 1.25rem;
-  left: 1.25rem;
+  bottom: 2.1rem;
+  left: 2.5rem;
   z-index: 4;
   color: rgba(245, 243, 238, 0.82);
   font-size: 12px;
