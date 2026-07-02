@@ -116,7 +116,7 @@ const BookingSection = ({ onSubmit }) => {
         <div className="booking-alternative">
           <p className="alternative-text">Prefer direct contact?</p>
           <a
-            href="https://wa.me/989123456789?text=Hi%20Shahrzad%2C%20I%27d%20like%20to%20discuss%20a%20booking"
+            href="https://wa.me/Shahrzd"
             target="_blank"
             rel="noopener noreferrer"
             className="whatsapp-link"
