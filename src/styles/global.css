@@ -44,7 +44,7 @@ body::after {
   opacity: 0.03;
   background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIj48ZmVUdXJidWxlbmNlIGJhc2VGcmVxdWVuY3k9Ii43NSIgc3RpdGNoVGlsZXM9InN0aXRjaCIgdHlwZT0iZnJhY3RhbE5vaXNlIi8+PGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPjwvZmlsdGVyPjxwYXRoIGQ9Ik0wIDBoMzAwdjMwMEgweiIgZmlsdGVyPSJ1cmwoI2EpIiBvcGFjaXR5PSIuNSIvPjwvc3ZnPg==');
   background-repeat: repeat;
-  animation: none;
+  animation: grainAnimation 8s steps(10) infinite;
 }
 
 @keyframes grainAnimation {
@@ -61,7 +61,7 @@ body::after {
 }
 
 .img-reveal {
-  clip-path: inset(0 0 0 0);
+  clip-path: inset(0 100% 0 0);
 }
 
 .reveal-img {

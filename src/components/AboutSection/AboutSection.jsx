@@ -7,6 +7,8 @@ import './AboutSection.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
+const ABOUT_DEMO_PLACEHOLDER = 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=800&h=1067&fit=crop';
+
 const defaultData = {
   bio: 'With a refined aesthetic and editorial sensibility, Shahrzad brings depth and versatility to high-fashion campaigns, beauty editorials, and luxury brand storytelling. She collaborates with photographers, creative directors, and brands who seek elevated visual narratives.',
   compCard: {
@@ -27,8 +29,17 @@ const AboutSection = ({ data }) => {
   useImageReveal(sectionRef);
 
   const handleAboutImageError = (event) => {
-    event.currentTarget.onerror = null;
-    event.currentTarget.src = 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=800&h=1067&fit=crop&crop=faces';
+    const image = event.currentTarget;
+
+    if (!image.dataset.usedDemoPlaceholder) {
+      image.dataset.usedDemoPlaceholder = 'true';
+      image.src = ABOUT_DEMO_PLACEHOLDER;
+      return;
+    }
+
+    image.onerror = null;
+    image.removeAttribute('src');
+    image.style.backgroundColor = '#0B0D10';
   };
 
   useEffect(() => {

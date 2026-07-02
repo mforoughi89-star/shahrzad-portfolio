@@ -18,8 +18,10 @@
   text-transform: uppercase;
 }
 
-.chapter-urban {
-  min-height: auto;
+.chapter-urban,
+.chapter--horizontal {
+  position: relative;
+  min-height: 100vh;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -62,42 +64,26 @@
 
 .chapter-track {
   display: flex;
-  gap: 2.5rem;
+  gap: 2rem;
+  width: max-content;
   padding-left: 5vw;
   padding-right: 5vw;
-  overflow-x: auto;
-  overscroll-behavior-inline: contain;
-  scroll-snap-type: x proximity;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(200, 167, 106, 0.55) rgba(245, 243, 238, 0.06);
-}
-
-.chapter-track::-webkit-scrollbar {
-  height: 8px;
-}
-
-.chapter-track::-webkit-scrollbar-track {
-  background: rgba(245, 243, 238, 0.06);
-}
-
-.chapter-track::-webkit-scrollbar-thumb {
-  background: rgba(200, 167, 106, 0.55);
+  will-change: transform;
 }
 
 .track-item,
 .chapter-track-item {
-  flex: 0 0 min(400px, 78vw);
-  width: min(400px, 78vw);
+  flex-shrink: 0;
+  width: clamp(360px, 50vw, 600px);
+  aspect-ratio: 3 / 4;
   margin: 0;
-  scroll-snap-align: center;
 }
 
 .track-item img,
+.chapter-track-item img,
 .chapter-track-image {
   width: 100%;
-  aspect-ratio: 5 / 7;
-  height: auto;
-  min-height: 0;
+  height: 100%;
   object-fit: cover;
   display: block;
   border: 1px solid rgba(245, 243, 238, 0.08);
@@ -124,9 +110,9 @@
     margin-bottom: 56px;
   }
 
-  .chapter-urban {
-    height: auto;
-    min-height: auto;
+  .chapter-urban,
+  .chapter--horizontal {
+    min-height: 100vh;
     margin-bottom: 84px;
     padding: 0 0 20px;
     justify-content: center;
@@ -140,22 +126,12 @@
   }
 
   .chapter-track {
-    width: auto;
-    overflow-x: auto;
     gap: 1.5rem;
     padding: 0 16px 12px;
-    scroll-snap-type: x mandatory;
   }
 
   .track-item,
   .chapter-track-item {
-    flex: 0 0 280px;
-    width: 280px;
-    scroll-snap-align: start;
-  }
-
-  .track-item img,
-  .chapter-track-image {
-    height: auto;
+    width: min(280px, 78vw);
   }
 }

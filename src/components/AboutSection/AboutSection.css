@@ -36,11 +36,14 @@
   margin-bottom: 22px;
 }
 
-.comp-card-list {
+.comp-card-list,
+.measurements {
   display: grid;
   gap: 0;
   max-width: 520px;
   border-top: 1px solid rgba(245, 243, 238, 0.12);
+  font-size: clamp(18px, 2vw, 22px);
+  line-height: 1.9;
 }
 
 .comp-card-item {
@@ -52,18 +55,21 @@
   border-bottom: 1px solid rgba(245, 243, 238, 0.12);
 }
 
-.comp-card-item dt {
-  font-size: 12px;
+.comp-card-item dt,
+.measurements dt {
+  font-size: clamp(13px, 1.25vw, 15px);
   font-weight: 700;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(200, 167, 106, 0.92);
+  color: var(--accent-gold, var(--gold));
 }
 
-.comp-card-item dd {
+.comp-card-item dd,
+.measurements dd {
   margin: 0;
   font-size: clamp(18px, 2vw, 22px);
   font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
   color: var(--text-primary);
   text-align: right;
   text-transform: capitalize;

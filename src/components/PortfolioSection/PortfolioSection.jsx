@@ -1,6 +1,21 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Chapter from './Chapter.jsx';
 import './PortfolioSection.css';
+
+gsap.registerPlugin(ScrollTrigger);
+
+const urbanFallbackIds = [
+  '1515886657613-9d3515b2ce84',
+  '1539109136881-3be0616acf4b',
+  '1483985988355-763728e1935b',
+  '1490481651871-ab68de25d43d',
+];
+
+const getUnsplashImage = (id, width = 900, height = 1200) => (
+  `https://images.unsplash.com/photo-${id}?w=${width}&h=${height}&fit=crop&auto=format&q=84`
+);
 
 const defaultChapters = [
   {
@@ -8,12 +23,12 @@ const defaultChapters = [
     description: 'Contemporary fashion meets architectural landscapes and metropolitan energy.',
     layout: 'horizontal',
     images: [
-      { url: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&h=1120&fit=crop&auto=format&q=82', alt: 'Urban Stories — look 1', caption: 'Look 01' },
-      { url: 'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=800&h=1120&fit=crop&auto=format&q=82', alt: 'Urban Stories — look 2', caption: 'Look 02' },
-      { url: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800&h=1120&fit=crop&auto=format&q=82', alt: 'Urban Stories — look 3', caption: 'Look 03' },
-      { url: 'https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=800&h=1120&fit=crop&auto=format&q=82', alt: 'Urban Stories — look 4', caption: 'Look 04' },
-      { url: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?w=800&h=1120&fit=crop&auto=format&q=82', alt: 'Urban Stories — look 5', caption: 'Look 05' },
-      { url: 'https://images.unsplash.com/photo-1513379733131-47fc74b45fc7?w=800&h=1120&fit=crop&auto=format&q=82', alt: 'Urban Stories — look 6', caption: 'Look 06' },
+      { url: getUnsplashImage('1515886657613-9d3515b2ce84'), alt: 'Urban Stories — look 1', caption: 'Look 01' },
+      { url: getUnsplashImage('1539109136881-3be0616acf4b'), alt: 'Urban Stories — look 2', caption: 'Look 02' },
+      { url: getUnsplashImage('1483985988355-763728e1935b'), alt: 'Urban Stories — look 3', caption: 'Look 03' },
+      { url: getUnsplashImage('1490481651871-ab68de25d43d'), alt: 'Urban Stories — look 4', caption: 'Look 04' },
+      { url: getUnsplashImage('1509631179647-0177331693ae'), alt: 'Urban Stories — look 5', caption: 'Look 05' },
+      { url: getUnsplashImage('1496747611176-843222e1e57c'), alt: 'Urban Stories — look 6', caption: 'Look 06' },
     ],
   },
   {
@@ -52,8 +67,58 @@ const defaultChapters = [
 ];
 
 const PortfolioSection = ({ chapters }) => {
+  const sectionRef = useRef(null);
+  const trackRef = useRef(null);
   const chaptersData = chapters || defaultChapters;
   const [urbanChapter, ...otherChapters] = chaptersData;
+
+  useEffect(() => {
+    const sectionEl = sectionRef.current;
+    const track = trackRef.current;
+
+    if (!sectionEl || !track) {
+      return undefined;
+    }
+
+    const getScrollDistance = () => Math.max(0, track.scrollWidth - window.innerWidth);
+    const refreshOnLoad = () => ScrollTrigger.refresh();
+
+    window.addEventListener('load', refreshOnLoad);
+
+    const ctx = gsap.context(() => {
+      gsap.to(track, {
+        x: () => -getScrollDistance(),
+        ease: 'none',
+        scrollTrigger: {
+          trigger: sectionEl,
+          pin: true,
+          scrub: 1,
+          end: () => `+=${getScrollDistance()}`,
+          invalidateOnRefresh: true,
+        },
+      });
+    }, sectionRef);
+
+    refreshOnLoad();
+
+    return () => {
+      window.removeEventListener('load', refreshOnLoad);
+      ctx.revert();
+    };
+  }, [urbanChapter.images.length]);
+
+  const handleUrbanImageError = (event, index) => {
+    const image = event.currentTarget;
+    const nextFallbackIndex = Number(image.dataset.fallbackIndex || 0);
+
+    if (nextFallbackIndex >= urbanFallbackIds.length) {
+      image.onerror = null;
+      return;
+    }
+
+    image.dataset.fallbackIndex = String(nextFallbackIndex + 1);
+    image.src = getUnsplashImage(urbanFallbackIds[(index + nextFallbackIndex) % urbanFallbackIds.length]);
+  };
 
   return (
     <section className="portfolio-section" id="portfolio">
@@ -65,7 +130,7 @@ const PortfolioSection = ({ chapters }) => {
         </div>
       </div>
 
-      <article className="chapter chapter-urban">
+      <article ref={sectionRef} className="chapter chapter-urban chapter--horizontal">
         <header className="chapter-urban-header">
           <span className="chapter-number">01 —</span>
           <div>
@@ -73,20 +138,18 @@ const PortfolioSection = ({ chapters }) => {
             <p className="chapter-description">{urbanChapter.description}</p>
           </div>
         </header>
-        <div className="chapter-track" aria-label="Urban Stories gallery">
+        <div ref={trackRef} className="chapter-track" aria-label="Urban Stories gallery">
           {urbanChapter.images.map((image, index) => (
             <figure key={image.alt} className="track-item chapter-track-item">
               <img
                 src={image.url}
                 alt={image.alt || `Urban Stories — look ${index + 1}`}
-                width="400"
-                height="560"
+                width="900"
+                height="1200"
                 loading={index < 2 ? 'eager' : 'lazy'}
                 decoding="async"
-                onError={(event) => {
-                  event.currentTarget.onerror = null;
-                  event.currentTarget.src = 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=800&h=1120&fit=crop&auto=format&q=82';
-                }}
+                onLoad={() => ScrollTrigger.refresh()}
+                onError={(event) => handleUrbanImageError(event, index)}
               />
               <figcaption>{image.caption || `Look ${String(index + 1).padStart(2, '0')}`}</figcaption>
             </figure>

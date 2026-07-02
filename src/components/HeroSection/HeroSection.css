@@ -28,7 +28,7 @@
 
 .hero-text {
   z-index: 2;
-  align-self: center;
+  align-self: end;
   padding-bottom: 3.5rem;
   text-align: left;
   opacity: 1;
@@ -150,10 +150,11 @@
   transform-origin: top;
 }
 
+.hero-caption,
 .hero-image-caption {
   position: absolute;
-  left: 40px;
-  bottom: 34px;
+  bottom: 1.25rem;
+  left: 1.25rem;
   z-index: 4;
   color: rgba(245, 243, 238, 0.82);
   font-size: 12px;
