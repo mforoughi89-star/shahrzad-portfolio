@@ -68,6 +68,11 @@ const Chapter = ({ title, description, images, layout = 'grid', number }) => {
           </figure>
         ))}
       </div>
+      {images.length > 4 && (
+        <a className="chapter-mobile-link" href="#booking">
+          View full chapter
+        </a>
+      )}
     </article>
   );
 };

@@ -124,6 +124,7 @@
   grid-column: 2;
   margin-top: 3rem;
   padding-top: 3rem;
+  padding-bottom: clamp(48px, 8vw, 96px);
   text-align: center;
   border-top: 1px solid rgba(245, 243, 238, 0.08);
 }
@@ -144,27 +145,31 @@
   align-items: center;
   gap: 10px;
   margin-top: 0;
-  padding: 1rem 2rem;
-  background: rgba(37, 211, 102, 0.1);
-  border: 1px solid rgba(37, 211, 102, 0.3);
-  border-radius: 4px;
-  color: #25d366;
+  padding: 16px 32px;
+  background: transparent;
+  border: 1px solid rgba(200, 167, 106, 0.35);
+  border-radius: 0;
+  color: #f5f3ee;
   font-family: 'Inter', sans-serif;
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
   text-decoration: none;
   transition: all 0.3s ease;
 }
 
 .whatsapp-link:hover {
-  background: rgba(37, 211, 102, 0.15);
-  border-color: #25d366;
+  background: rgba(200, 167, 106, 0.06);
+  border-color: #c8a76a;
+  color: #ffffff;
   transform: translateY(-2px);
 }
 
 .whatsapp-link svg {
   width: 20px;
   height: 20px;
+  color: #4e9f6e;
 }
 
 @media (max-width: 860px) {

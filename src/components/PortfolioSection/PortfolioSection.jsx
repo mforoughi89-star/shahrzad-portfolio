@@ -181,6 +181,11 @@ const PortfolioSection = ({ chapters }) => {
             </figure>
           ))}
         </div>
+        {urbanChapter.images.length > 4 && (
+          <a className="chapter-mobile-link chapter-mobile-link--urban" href="#booking">
+            View full chapter
+          </a>
+        )}
       </article>
 
       <div className="container">

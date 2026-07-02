@@ -112,6 +112,10 @@
   color: var(--text-secondary, rgba(245, 243, 238, 0.7));
 }
 
+.chapter-mobile-link--urban {
+  display: none;
+}
+
 @media (max-width: 768px) {
   .portfolio-section {
     padding: 84px 0 10px;
@@ -125,22 +129,24 @@
   .chapter--horizontal {
     min-height: auto;
     overflow: visible;
-    margin-bottom: 84px;
-    padding: 0 0 20px;
+    margin-bottom: 96px;
+    padding: 0 0 40px;
     justify-content: center;
   }
 
   .chapter-urban-header {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 10px;
-    padding: 0 16px 2rem;
+    gap: 12px;
+    margin: 0 0 44px;
+    padding: 72px 16px 44px;
+    border-top: 1px solid rgba(245, 243, 238, 0.08);
   }
 
   .chapter-track {
     width: auto;
     max-width: 100%;
-    gap: 1.5rem;
+    gap: 1.25rem;
     padding: 0 16px 16px;
     overflow-x: auto;
     overscroll-behavior-inline: contain;
@@ -154,5 +160,15 @@
     flex: 0 0 min(280px, 78vw);
     width: min(280px, 78vw);
     scroll-snap-align: start;
+  }
+
+  .chapter-track-item:nth-child(n + 5) {
+    display: none;
+  }
+
+  .chapter-mobile-link--urban {
+    display: inline-flex;
+    align-self: flex-start;
+    margin: 28px 16px 0;
   }
 }
