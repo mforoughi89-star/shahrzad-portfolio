@@ -1,6 +1,7 @@
 .portfolio-section {
   padding: 100px 0 30px;
   background: linear-gradient(180deg, var(--bg-primary), var(--bg-secondary));
+  overflow-x: clip;
 }
 
 .portfolio-intro {
@@ -118,11 +119,23 @@
 
 @media (max-width: 768px) {
   .portfolio-section {
-    padding: 84px 0 10px;
+    padding: clamp(64px, 14vw, 84px) 0 clamp(48px, 10vw, 64px);
   }
 
   .portfolio-intro {
-    margin-bottom: 56px;
+    margin-bottom: clamp(48px, 10vw, 64px);
+    padding: 0 20px;
+  }
+
+  .portfolio-section .section-title {
+    font-size: clamp(2rem, 8vw, 2.8rem);
+    letter-spacing: -0.01em;
+  }
+
+  .section-kicker {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    margin-bottom: 10px;
   }
 
   .chapter-urban,
