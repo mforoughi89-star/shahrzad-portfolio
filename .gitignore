@@ -10,3 +10,10 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 .env*
+
+# Keep original high-resolution photos local; deploy optimized copies only.
+public/images/*
+!public/images/
+!public/images/optimized/
+!public/images/optimized/*
+عکس‌های شهرزاد/

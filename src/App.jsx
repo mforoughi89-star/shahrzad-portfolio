@@ -16,7 +16,7 @@ const heroData = {
   name: 'Shahrzad',
   subtitle: 'Fashion & Commercial Model',
   tagline: 'Elevating stories for luxury fashion, beauty and lifestyle brands through poised movement, refined presence, and cinematic visual language.',
-  heroImage: 'https://picsum.photos/seed/shahrzad-hero/1200/1600',
+  heroImage: '/images/optimized/hero-portrait.jpg',
 };
 
 const App = () => {

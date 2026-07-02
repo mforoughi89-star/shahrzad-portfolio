@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './LazyImage.css';
 
-const FALLBACK_IMAGE = 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=900&h=1200&fit=crop&auto=format&q=82';
+const FALLBACK_IMAGE = '/images/optimized/urban-05.jpg';
 
 const LazyImage = ({ src, alt, className = '', imageClassName = '', eager = false }) => {
   const [loaded, setLoaded] = useState(false);

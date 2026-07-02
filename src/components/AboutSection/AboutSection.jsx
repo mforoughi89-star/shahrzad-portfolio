@@ -7,7 +7,7 @@ import './AboutSection.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const ABOUT_DEMO_PLACEHOLDER = 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&h=1200&fit=crop&q=85';
+const ABOUT_DEMO_PLACEHOLDER = '/images/optimized/about-portrait.jpg';
 
 const defaultData = {
   bio: 'With a refined aesthetic and editorial sensibility, Shahrzad brings depth and versatility to high-fashion campaigns, beauty editorials, and luxury brand storytelling. She collaborates with photographers, creative directors, and brands who seek elevated visual narratives.',
@@ -19,7 +19,7 @@ const defaultData = {
     shoes: 'EU 38 / US 7.5',
   },
   collaborations: ['Vogue Italia', 'Harper\'s Bazaar', 'Selected luxury fashion houses', 'Leading beauty brands'],
-  profileImage: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&h=1200&fit=crop&q=85',
+  profileImage: '/images/optimized/about-portrait.jpg',
 };
 
 const AboutSection = ({ data }) => {

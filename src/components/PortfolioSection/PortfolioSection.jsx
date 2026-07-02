@@ -6,16 +6,13 @@ import './PortfolioSection.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const urbanFallbackIds = [
-  '1515886657613-9d3515b2ce84',
-  '1539109136881-3be0616acf4b',
-  '1483985988355-763728e1935b',
-  '1490481651871-ab68de25d43d',
-];
+const realImage = (filename) => `/images/optimized/${filename}`;
 
-const getUnsplashImage = (id, width = 900, height = 1200) => (
-  `https://images.unsplash.com/photo-${id}?w=${width}&h=${height}&fit=crop&auto=format&q=84`
-);
+const realImageFallbacks = [
+  realImage('urban-05.jpg'),
+  realImage('urban-02.jpg'),
+  realImage('interiors-01.jpg'),
+];
 
 const defaultChapters = [
   {
@@ -23,12 +20,12 @@ const defaultChapters = [
     description: 'Contemporary fashion meets architectural landscapes and metropolitan energy.',
     layout: 'horizontal',
     images: [
-      { url: getUnsplashImage('1515886657613-9d3515b2ce84'), alt: 'Urban Stories — look 1', caption: 'Look 01' },
-      { url: getUnsplashImage('1539109136881-3be0616acf4b'), alt: 'Urban Stories — look 2', caption: 'Look 02' },
-      { url: getUnsplashImage('1483985988355-763728e1935b'), alt: 'Urban Stories — look 3', caption: 'Look 03' },
-      { url: getUnsplashImage('1490481651871-ab68de25d43d'), alt: 'Urban Stories — look 4', caption: 'Look 04' },
-      { url: getUnsplashImage('1509631179647-0177331693ae'), alt: 'Urban Stories — look 5', caption: 'Look 05' },
-      { url: getUnsplashImage('1496747611176-843222e1e57c'), alt: 'Urban Stories — look 6', caption: 'Look 06' },
+      { url: realImage('urban-01.jpg'), alt: 'Shahrzad urban fashion look 1', caption: 'Look 01' },
+      { url: realImage('urban-02.jpg'), alt: 'Shahrzad urban fashion look 2', caption: 'Look 02' },
+      { url: realImage('urban-03.jpg'), alt: 'Shahrzad urban fashion look 3', caption: 'Look 03' },
+      { url: realImage('urban-04.jpg'), alt: 'Shahrzad urban fashion look 4', caption: 'Look 04' },
+      { url: realImage('urban-05.jpg'), alt: 'Shahrzad urban fashion look 5', caption: 'Look 05' },
+      { url: realImage('urban-06.jpg'), alt: 'Shahrzad urban fashion look 6', caption: 'Look 06' },
     ],
   },
   {
@@ -36,10 +33,10 @@ const defaultChapters = [
     description: 'Curated settings in refined environments—galleries, hotels, and hidden cafés.',
     layout: 'grid',
     images: [
-      { url: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=900&h=1200&fit=crop&auto=format&q=82', alt: 'Interiors and Luxury Spaces 1', caption: 'Gallery Light' },
-      { url: 'https://images.unsplash.com/photo-1518005020951-eccb494ad742?w=900&h=1200&fit=crop&auto=format&q=82', alt: 'Interiors and Luxury Spaces 2', caption: 'Quiet Luxury' },
-      { url: 'https://images.unsplash.com/photo-1518005020951-eccb494ad742?w=900&h=1200&fit=crop&auto=format&q=82', alt: 'Interiors and Luxury Spaces 3', caption: 'Hotel Story' },
-      { url: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=900&h=1200&fit=crop&auto=format&q=82', alt: 'Interiors and Luxury Spaces 4', caption: 'Private Salon' },
+      { url: realImage('interiors-01.jpg'), alt: 'Shahrzad interior editorial portrait 1', caption: 'Gallery Light' },
+      { url: realImage('interiors-02.jpg'), alt: 'Shahrzad interior editorial portrait 2', caption: 'Quiet Luxury' },
+      { url: realImage('interiors-03.jpg'), alt: 'Shahrzad interior editorial portrait 3', caption: 'Hotel Story' },
+      { url: realImage('interiors-04.jpg'), alt: 'Shahrzad luxury space editorial portrait', caption: 'Private Salon' },
     ],
   },
   {
@@ -47,10 +44,10 @@ const defaultChapters = [
     description: 'Timeless minimalism. Classic studio work with focus on silhouette, form, and light.',
     layout: 'editorial',
     images: [
-      { url: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=900&h=1200&fit=crop&auto=format&q=82', alt: 'Studio and Monochrome 1', caption: 'Form Study' },
-      { url: 'https://images.unsplash.com/photo-1512316609839-ce289d3eba0a?w=1200&h=800&fit=crop&auto=format&q=82', alt: 'Studio and Monochrome 2', caption: 'Soft Contrast' },
-      { url: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=1200&h=800&fit=crop&auto=format&q=82', alt: 'Studio and Monochrome 3', caption: 'Beauty Closeup' },
-      { url: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=1200&h=800&fit=crop&auto=format&q=82', alt: 'Studio and Monochrome 4', caption: 'Timeless Frame' },
+      { url: realImage('studio-01.jpg'), alt: 'Shahrzad studio portrait 1', caption: 'Form Study' },
+      { url: realImage('studio-02.jpg'), alt: 'Shahrzad studio portrait 2', caption: 'Soft Contrast' },
+      { url: realImage('studio-03.jpg'), alt: 'Shahrzad monochrome portrait', caption: 'Beauty Closeup' },
+      { url: realImage('studio-landscape.jpg'), alt: 'Shahrzad studio landscape frame', caption: 'Timeless Frame' },
     ],
   },
   {
@@ -58,10 +55,10 @@ const defaultChapters = [
     description: 'Bold palettes, vivid scenes, and dynamic compositions that command attention.',
     layout: 'grid',
     images: [
-      { url: 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=900&h=1200&fit=crop&auto=format&q=82', alt: 'Color Statements 1', caption: 'Vivid Mood' },
-      { url: 'https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=900&h=1200&fit=crop&auto=format&q=82', alt: 'Color Statements 2', caption: 'Color Field' },
-      { url: 'https://images.unsplash.com/photo-1495385794356-15371f348c31?w=900&h=1200&fit=crop&auto=format&q=82', alt: 'Color Statements 3', caption: 'Dynamic Palette' },
-      { url: 'https://images.unsplash.com/photo-1502716119720-b23a93e5fe1b?w=900&h=1200&fit=crop&auto=format&q=82', alt: 'Color Statements 4', caption: 'Statement' },
+      { url: realImage('color-01.jpg'), alt: 'Shahrzad colorful outfit 1', caption: 'Vivid Mood' },
+      { url: realImage('color-02.jpg'), alt: 'Shahrzad colorful outfit 2', caption: 'Color Field' },
+      { url: realImage('color-03.jpg'), alt: 'Shahrzad colorful outfit 3', caption: 'Dynamic Palette' },
+      { url: realImage('color-04.jpg'), alt: 'Shahrzad bold color statement', caption: 'Statement' },
     ],
   },
 ];
@@ -138,13 +135,15 @@ const PortfolioSection = ({ chapters }) => {
     const image = event.currentTarget;
     const nextFallbackIndex = Number(image.dataset.fallbackIndex || 0);
 
-    if (nextFallbackIndex >= urbanFallbackIds.length) {
+    if (nextFallbackIndex >= realImageFallbacks.length) {
       image.onerror = null;
+      image.style.background = '#0B0D10';
+      image.style.minHeight = '600px';
       return;
     }
 
     image.dataset.fallbackIndex = String(nextFallbackIndex + 1);
-    image.src = getUnsplashImage(urbanFallbackIds[(index + nextFallbackIndex) % urbanFallbackIds.length]);
+    image.src = realImageFallbacks[(index + nextFallbackIndex) % realImageFallbacks.length];
   };
 
   return (
