@@ -1,8 +1,10 @@
 import { useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { CustomEase } from 'gsap/CustomEase';
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, CustomEase);
+CustomEase.create('cinematicReveal', '0.33, 1, 0.68, 1');
 
 export function useImageReveal(scopeRef) {
   useEffect(() => {
@@ -13,8 +15,8 @@ export function useImageReveal(scopeRef) {
           { clipPath: 'inset(0 100% 0 0)' },
           {
             clipPath: 'inset(0 0% 0 0)',
-            duration: 1.1,
-            ease: 'power3.inOut',
+            duration: 1.15,
+            ease: 'cinematicReveal',
             scrollTrigger: {
               trigger: element,
               start: 'top 86%',

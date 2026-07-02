@@ -59,7 +59,7 @@
 .chapter--monochrome .chapter-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: 240px;
+  grid-auto-rows: auto;
   gap: clamp(16px, 2vw, 24px);
   row-gap: clamp(20px, 2.5vw, 32px);
 }
@@ -69,6 +69,14 @@
 .chapter--monochrome .chapter-grid .chapter-image-wrapper {
   aspect-ratio: auto;
   min-height: 0;
+}
+
+.chapter-grid--studio .chapter-lazy-image,
+.chapter--studio .chapter-grid .chapter-lazy-image,
+.chapter--monochrome .chapter-grid .chapter-lazy-image {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: inherit;
 }
 
 .chapter-grid--studio .grid-item:nth-child(1),
