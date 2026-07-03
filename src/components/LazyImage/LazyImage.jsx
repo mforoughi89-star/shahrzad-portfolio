@@ -3,7 +3,14 @@ import './LazyImage.css';
 
 const FALLBACK_IMAGE = '/images/optimized/urban-05.jpg';
 
-const LazyImage = ({ src, alt, className = '', imageClassName = '', eager = false }) => {
+const LazyImage = ({
+  src,
+  alt,
+  className = '',
+  imageClassName = '',
+  eager = false,
+  onReady,
+}) => {
   const [loaded, setLoaded] = useState(false);
   const [currentSrc, setCurrentSrc] = useState(src);
   const imageRef = useRef(null);
@@ -13,11 +20,18 @@ const LazyImage = ({ src, alt, className = '', imageClassName = '', eager = fals
     setLoaded(false);
   }, [src]);
 
+  // Catch browser-cached images that never fire onLoad
   useEffect(() => {
-    if (imageRef.current?.complete) {
+    if (imageRef.current?.complete && imageRef.current?.naturalWidth > 0) {
       setLoaded(true);
+      onReady?.(imageRef.current);
     }
-  }, [currentSrc]);
+  }, [currentSrc, onReady]);
+
+  const handleLoad = () => {
+    setLoaded(true);
+    onReady?.(imageRef.current);
+  };
 
   return (
     <div className={`lazy-image-wrapper ${className} ${loaded ? 'is-loaded' : ''}`}>
@@ -25,12 +39,14 @@ const LazyImage = ({ src, alt, className = '', imageClassName = '', eager = fals
         ref={imageRef}
         src={currentSrc}
         alt={alt}
-        onLoad={() => setLoaded(true)}
+        onLoad={handleLoad}
         onError={() => {
           if (currentSrc !== FALLBACK_IMAGE) {
             setCurrentSrc(FALLBACK_IMAGE);
+          } else {
+            setLoaded(true);
+            onReady?.(imageRef.current);
           }
-          setLoaded(true);
         }}
         className={imageClassName}
         loading={eager ? 'eager' : 'lazy'}

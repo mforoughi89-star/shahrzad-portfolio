@@ -5,9 +5,9 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 /**
- * Dark-romanticism image reveal.
- * Clip-path wipe + slow scale settle, per-image trigger.
- * Ease: expo.out @ 1.6s — heavy, deliberate, editorial.
+ * Dark-romanticism reveal, gated on real image load.
+ * Fires the 1.6s wipe + 2.2s scale settle only when the
+ * element is in view AND its <img> has actually decoded.
  */
 export const useImageReveal = (containerRef) => {
   useEffect(() => {
@@ -17,38 +17,65 @@ export const useImageReveal = (containerRef) => {
       const targets = gsap.utils.toArray('.img-reveal');
 
       targets.forEach((el) => {
-        const img = el.querySelector('img') || el;
+        const img = el.querySelector('img');
 
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: el,
-            start: 'top 82%',
-            toggleActions: 'play none none none',
-            once: true,
-          },
+        // Hide immediately so nothing flashes before it's ready
+        gsap.set(el, {
+          clipPath: 'polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)',
         });
+        if (img) gsap.set(img, { scale: 1.08 });
 
-        tl.fromTo(
-          el,
-          { clipPath: 'polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)' },
-          {
+        let inView = false;
+        let imgReady = !img || (img.complete && img.naturalWidth > 0);
+        let played = false;
+
+        const play = () => {
+          if (played || !inView || !imgReady) return;
+          played = true;
+
+          const tl = gsap.timeline();
+          tl.to(el, {
             clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
             ease: 'expo.out',
             duration: 1.6,
+          });
+          if (img) {
+            tl.to(
+              img,
+              {
+                scale: 1,
+                ease: 'power3.out',
+                duration: 2.2,
+                clearProps: 'scale',
+              },
+              0,
+            );
+          }
+        };
+
+        const onImgReady = () => {
+          imgReady = true;
+          play();
+        };
+
+        if (img && !imgReady) {
+          img.addEventListener('load', onImgReady, { once: true });
+          img.addEventListener('error', onImgReady, { once: true });
+        }
+
+        ScrollTrigger.create({
+          trigger: el,
+          start: 'top 82%',
+          once: true,
+          onEnter: () => {
+            inView = true;
+            play();
           },
-          0,
-        ).fromTo(
-          img,
-          { scale: 1.08 },
-          {
-            scale: 1,
-            ease: 'power3.out',
-            duration: 2.2,
-            clearProps: 'scale',
-          },
-          0,
-        );
+        });
       });
+
+      // Late-loading images shift layout — keep triggers honest
+      ScrollTrigger.refresh();
     }, containerRef);
 
     return () => ctx.revert();
