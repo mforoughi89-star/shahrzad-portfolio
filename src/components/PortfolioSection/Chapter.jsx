@@ -1,13 +1,11 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { CustomEase } from 'gsap/CustomEase';
 import LazyImage from '../LazyImage/LazyImage.jsx';
 import { useImageReveal } from '../../hooks/useImageReveal.js';
 import './Chapter.css';
 
-gsap.registerPlugin(ScrollTrigger, CustomEase);
-CustomEase.create('cinematic', '0.33, 1, 0.68, 1');
+gsap.registerPlugin(ScrollTrigger);
 
 const Chapter = ({ title, description, images, layout = 'grid', number }) => {
   const chapterRef = useRef(null);
@@ -20,7 +18,7 @@ const Chapter = ({ title, description, images, layout = 'grid', number }) => {
         y: 55,
         opacity: 0,
         duration: 1.2,
-        ease: 'cinematic',
+        ease: 'power3.out',
         scrollTrigger: {
           trigger: chapterRef.current,
           start: 'top 78%',
@@ -32,7 +30,7 @@ const Chapter = ({ title, description, images, layout = 'grid', number }) => {
         y: 28,
         duration: 0.9,
         stagger: 0.12,
-        ease: 'cinematic',
+        ease: 'power2.out',
         scrollTrigger: {
           trigger: chapterRef.current,
           start: 'top 72%',
