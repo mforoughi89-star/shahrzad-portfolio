@@ -21,7 +21,7 @@ export const useImageReveal = (containerRef) => {
 
         // Hide immediately so nothing flashes before it's ready
         gsap.set(el, {
-          clipPath: 'polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)',
+          clipPath: 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)',
         });
         if (img) gsap.set(img, { scale: 1.08 });
 
