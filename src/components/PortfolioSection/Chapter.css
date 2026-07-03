@@ -1,5 +1,10 @@
+/* ============================================
+   Chapter — Shared Layout
+   ============================================ */
 .chapter {
   margin-bottom: 124px;
+  max-width: 100%;
+  overflow-x: clip;
 }
 
 .chapter-header {
@@ -8,6 +13,7 @@
   gap: 28px;
   align-items: start;
   margin-bottom: 48px;
+  max-width: 100%;
 }
 
 .chapter-number {
@@ -32,9 +38,11 @@
   color: rgba(255, 255, 255, 0.75);
 }
 
+/* ── Grid base ── */
 .chapter-grid {
   display: grid;
   gap: 24px;
+  max-width: 100%;
 }
 
 .chapter-grid.grid {
@@ -56,28 +64,29 @@
 
 /* ============================================
    Studio & Monochrome — Editorial Grid
-   Rows breathe naturally; ratio enforced on img
+   Ratio enforced on img for mathematical stability
    ============================================ */
 .chapter-grid--studio,
 .chapter--studio .chapter-grid,
 .chapter--monochrome .chapter-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: auto; /* killed the 240px conflict */
+  grid-auto-rows: auto;
   gap: clamp(16px, 2vw, 24px);
   row-gap: clamp(20px, 2.5vw, 32px);
   align-items: stretch;
+  max-width: 100%;
 }
 
 .chapter-grid--studio .grid-item,
 .chapter--studio .chapter-grid .chapter-image-wrapper,
 .chapter--monochrome .chapter-grid .chapter-image-wrapper {
-  aspect-ratio: auto; /* wrapper defers to img — single source of truth */
+  aspect-ratio: auto;
   min-height: 0;
   height: 100%;
 }
 
-/* Item 1 — portrait anchor (left column) */
+/* Item 1 — Portrait anchor */
 .chapter-grid--studio .grid-item:nth-child(1),
 .chapter--studio .chapter-grid > :nth-child(1),
 .chapter--monochrome .chapter-grid > :nth-child(1) {
@@ -85,7 +94,7 @@
   grid-row: 1 / 2;
 }
 
-/* Item 2 — wide landscape (spans cols 2–3) */
+/* Item 2 — Wide landscape (spans cols 2–3) */
 .chapter-grid--studio .grid-item:nth-child(2),
 .chapter--studio .chapter-grid > :nth-child(2),
 .chapter--monochrome .chapter-grid > :nth-child(2) {
@@ -93,7 +102,7 @@
   grid-row: 1 / 2;
 }
 
-/* Item 3 — full-bleed cinematic row */
+/* Item 3 — Full-bleed cinematic row */
 .chapter-grid--studio .grid-item:nth-child(3),
 .chapter--studio .chapter-grid > :nth-child(3),
 .chapter--monochrome .chapter-grid > :nth-child(3) {
@@ -101,31 +110,31 @@
   grid-row: 2 / 3;
 }
 
-/* Ratio lives on the img — mathematically stable
-   regardless of source file (3:4 or 3:2) */
+/* Ratio lives on the img */
 .chapter-grid--studio img,
 .chapter--studio .chapter-grid img,
 .chapter--monochrome .chapter-grid img {
   width: 100%;
   height: 100%;
-  aspect-ratio: 3 / 4;          /* default: portrait */
+  aspect-ratio: 3 / 4;
   object-fit: cover;
   display: block;
+  max-width: 100%;
 }
 
-/* Landscape overrides matching the span geometry */
 .chapter-grid--studio .grid-item:nth-child(2) img,
 .chapter--studio .chapter-grid > :nth-child(2) img,
 .chapter--monochrome .chapter-grid > :nth-child(2) img {
-  aspect-ratio: 3 / 2;          /* wide item */
+  aspect-ratio: 3 / 2;
 }
 
 .chapter-grid--studio .grid-item:nth-child(3) img,
 .chapter--studio .chapter-grid > :nth-child(3) img,
 .chapter--monochrome .chapter-grid > :nth-child(3) img {
-  aspect-ratio: 21 / 9;         /* full-bleed cinematic strip */
+  aspect-ratio: 21 / 9;
 }
 
+/* ── Image wrapper ── */
 .chapter-image-wrapper {
   position: relative;
   overflow: hidden;
@@ -135,6 +144,7 @@
   border: 1px solid rgba(245, 243, 238, 0.08);
   opacity: 1 !important;
   visibility: visible !important;
+  max-width: 100%;
 }
 
 .chapter-image-wrapper::after {
@@ -165,10 +175,7 @@
   display: block;
 }
 
-/* ================================
-   Editorial hover — heavy, fluid, magnetic
-   Saint Laurent / Celine register
-   ============================================ */
+/* ── Editorial hover ── */
 .chapter-image-wrapper img,
 .chapter-image-wrapper .chapter-image {
   transform-origin: center center;
@@ -212,6 +219,7 @@
   }
 }
 
+/* ── Overlay ── */
 .chapter-image-overlay {
   position: absolute;
   inset: auto 0 0;
@@ -238,6 +246,9 @@
   display: none;
 }
 
+/* ============================================
+   TABLET — max-width: 980px
+   ============================================ */
 @media (max-width: 980px) {
   .chapter-grid.grid,
   .chapter-grid.editorial,
@@ -267,78 +278,13 @@
   }
 }
 
-@media (max-width: 768px) {
-  .chapter {
-    margin-bottom: 96px;
-  }
-
-  .chapter-header {
-    grid-template-columns: 1fr;
-    gap: 12px;
-    margin: 0 calc(50% - 50vw) 44px;
-    padding: 72px 16px 44px;
-    border-top: 1px solid rgba(245, 243, 238, 0.08);
-  }
-
-  .chapter-number {
-    padding-top: 0;
-  }
-
-  .chapter-grid.grid,
-  .chapter-grid.editorial,
-  .chapter-grid--studio,
-  .chapter--studio .chapter-grid,
-  .chapter--monochrome .chapter-grid {
-    grid-template-columns: 1fr;
-    gap: 34px;
-  }
-
-  .chapter-image-wrapper {
-    width: 100%;
-    justify-self: center;
-  }
-
-  .chapter-image-wrapper:nth-child(3n + 2) {
-    width: 85%;
-    justify-self: start;
-  }
-
-  .chapter-image-wrapper:nth-child(3n) {
-    width: 88%;
-    justify-self: end;
-  }
-
-  .chapter-grid--studio .grid-item,
-  .chapter--studio .chapter-grid > *,
-  .chapter--monochrome .chapter-grid > * {
-    grid-column: 1 / -1 !important;
-    grid-row: auto !important;
-  }
-
-  .chapter-image-wrapper:nth-child(n + 5) {
-    display: none;
-  }
-
-  .chapter-mobile-link {
-    display: inline-flex;
-    margin-top: 32px;
-    color: var(--gold);
-    font-family: 'Inter', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    text-decoration: none;
-    border-bottom: 1px solid rgba(200, 167, 106, 0.45);
-    padding-bottom: 8px;
-  }
-}
-
-/*============================================
-   MOBILE EDITORIAL GRID — Vogue Stagger System
-   Max-width: 768px
+/* ============================================
+   MOBILE — max-width: 767px
+   Unified single breakpoint (combines former
+   768px header + Vogue stagger blocks)
    ============================================ */
-@media (max-width: 768px) {
+@media (max-width: 767px) {
+  /* ── Chapter rhythm ── */
   .chapter {
     margin-bottom: 0;
     padding-top: clamp(72px, 16vw, 96px);
@@ -349,6 +295,7 @@
     border-top: 1px solid rgba(200, 167, 106, 0.12);
   }
 
+  /* ── Header — full-bleed but overflow-safe ── */
   .chapter-header {
     grid-template-columns: 1fr;
     gap: 0;
@@ -402,6 +349,7 @@
     letter-spacing: 0.01em;
   }
 
+  /* ── Grid becomes flex column (Vogue stagger) ── */
   .chapter-grid.grid,
   .chapter-grid.editorial,
   .chapter-grid--studio,
@@ -413,29 +361,36 @@
     grid-template-columns: unset;
     grid-auto-rows: unset;
     overflow: visible;
+    max-width: 100%;
   }
 
-  .chapter-grid .chapter-image-wrapper:nth-child(n),
-  .chapter-grid--studio .chapter-image-wrapper:nth-child(n),
-  .chapter--studio .chapter-grid .chapter-image-wrapper:nth-child(n),
-  .chapter--monochrome .chapter-grid .chapter-image-wrapper:nth-child(n) {
+  /* Kill ALL grid positioning on wrappers */
+  .chapter-grid .chapter-image-wrapper,
+  .chapter-grid--studio .chapter-image-wrapper,
+  .chapter--studio .chapter-grid .chapter-image-wrapper,
+  .chapter--monochrome .chapter-grid .chapter-image-wrapper {
     display: block;
     grid-column: unset !important;
     grid-row: unset !important;
     justify-self: unset;
     aspect-ratio: unset;
-  }
-
-  .chapter-grid .chapter-image-wrapper:nth-child(1) {
-    width: 100%;
+    width: auto;
+    max-width: 100%;
     margin-left: 0;
     margin-right: 0;
+  }
+
+  /* ── Vogue stagger widths ── */
+  .chapter-grid .chapter-image-wrapper:nth-child(1) {
+    width: 100%;
+    max-width: 100%;
     margin-bottom: clamp(12px, 3.5vw, 20px);
     aspect-ratio: 4 / 5;
   }
 
   .chapter-grid .chapter-image-wrapper:nth-child(2) {
     width: 76%;
+    max-width: 76%;
     margin-left: auto;
     margin-right: 0;
     margin-bottom: clamp(12px, 3.5vw, 20px);
@@ -444,6 +399,7 @@
 
   .chapter-grid .chapter-image-wrapper:nth-child(3) {
     width: 84%;
+    max-width: 84%;
     margin-left: 0;
     margin-right: auto;
     margin-bottom: clamp(12px, 3.5vw, 20px);
@@ -452,6 +408,7 @@
 
   .chapter-grid .chapter-image-wrapper:nth-child(4) {
     width: 90%;
+    max-width: 90%;
     margin-left: auto;
     margin-right: 0;
     margin-bottom: 0;
@@ -460,6 +417,7 @@
 
   .chapter-grid .chapter-image-wrapper:nth-child(5) {
     width: 80%;
+    max-width: 80%;
     margin-left: 0;
     margin-right: auto;
     margin-bottom: clamp(12px, 3.5vw, 20px);
@@ -468,14 +426,37 @@
 
   .chapter-grid .chapter-image-wrapper:nth-child(6) {
     width: 88%;
+    max-width: 88%;
     margin-left: auto;
     margin-right: 0;
     margin-bottom: 0;
     aspect-ratio: 3 / 4;
   }
 
+  /* Cap at 4 images visible */
+  .chapter-grid .chapter-image-wrapper:nth-child(n + 5) {
+    display: none;
+  }
+
+  /* Mobile link */
+  .chapter-mobile-link {
+    display: inline-flex;
+    margin-top: 32px;
+    color: var(--gold);
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(200, 167, 106, 0.45);
+    padding-bottom: 8px;
+  }
+
+  /* ── Wrapper overflow containment ── */
   .chapter-image-wrapper {
     overflow: hidden;
+    max-width: 100%;
   }
 
   .chapter-image-wrapper img,
