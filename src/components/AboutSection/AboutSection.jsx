@@ -10,15 +10,22 @@ gsap.registerPlugin(ScrollTrigger);
 const ABOUT_DEMO_PLACEHOLDER = '/images/optimized/about-portrait.jpg';
 
 const defaultData = {
-  bio: 'With a refined aesthetic and editorial sensibility, Shahrzad brings depth and versatility to high-fashion campaigns, beauty editorials, and luxury brand storytelling. She collaborates with photographers, creative directors, and brands who seek elevated visual narratives.',
+  bio: 'With a fresh editorial presence and natural poise, Shahrzad brings versatility and expressive energy to commercial fashion, lookbooks, and beauty campaigns. She collaborates actively with photographers, stylists, and contemporary boutique brands.',
   compCard: {
-    height: '175 cm / 5\'9"',
-    eyes: 'Hazel',
+    height: '165 cm / 5\'5"',
+    weight: '55 kg / 121 lbs',
+    eyes: 'Brown',
     hair: 'Dark Brown',
-    dress: 'EU 36 / US 4',
-    shoes: 'EU 38 / US 7.5',
+    top: 'EU 36 / US 4',
+    bottom: 'EU 38 / US 6',
+    shoes: 'EU 39 / US 8.5',
   },
-  collaborations: ['Vogue Italia', 'Harper\'s Bazaar', 'Selected luxury fashion houses', 'Leading beauty brands'],
+  collaborations: [
+    'Boutique Fashion & Apparel Labels',
+    'Lookbooks & Online Store Catalogues',
+    'Beauty, Skincare & Cosmetics Shoots',
+    'Independent Photographers & Studio Projects',
+  ],
   profileImage: '/images/optimized/about-portrait.jpg',
 };
 

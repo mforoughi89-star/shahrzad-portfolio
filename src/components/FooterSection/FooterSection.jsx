@@ -5,7 +5,7 @@ const FooterSection = ({ data }) => {
   const defaultData = {
     name: 'Shahrzad',
     title: 'Fashion & Commercial Model',
-    location: 'Based in Tehran, available worldwide.',
+    location: 'Based in Tehran, available for travel.',
     instagram: {
       label: 'Instagram',
       handle: '@callme.shhrzd',

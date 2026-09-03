@@ -15,7 +15,7 @@ const FooterSection = lazy(() => import('./components/FooterSection/FooterSectio
 const heroData = {
   name: 'Shahrzad',
   subtitle: 'Fashion & Commercial Model',
-  tagline: 'Elevating stories for luxury fashion, beauty and lifestyle brands through poised movement, refined presence, and cinematic visual language.',
+  tagline: 'Bringing contemporary fashion, lookbooks, and beauty collections to life through expressive poise, versatility, and natural visual storytelling.',
   heroImage: '/images/optimized/hero-portrait.jpg',
 };
 

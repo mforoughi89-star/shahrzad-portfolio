@@ -4,20 +4,20 @@ import './ServicesSection.css';
 
 const defaultServices = [
   {
-    title: 'High-End Fashion Campaigns',
-    description: 'Runway to ready-to-wear for luxury brands seeking sophisticated visual impact.',
+    title: 'Commercial & Brand Shoots',
+    description: 'Engaging, expressive visuals for fashion brands, boutique apparel, and social campaigns.',
   },
   {
-    title: 'Editorial & Magazine',
-    description: 'Vogue, Harper\'s Bazaar, and independent publications with a strong editorial vision.',
+    title: 'Lookbooks & E-Commerce',
+    description: 'Clean, versatile product and collection showcases for digital stores and seasonal releases.',
   },
   {
     title: 'Beauty & Cosmetics',
-    description: 'Skincare, fragrance, and makeup campaigns demanding refined aesthetic presence.',
+    description: 'Closeups and natural aesthetic presentation for skincare, makeup, and wellness brands.',
   },
   {
-    title: 'Lookbooks & Catalogues',
-    description: 'Seasonal collections and designer showcases requiring consistency and versatility.',
+    title: 'Creative & Editorial Studio',
+    description: 'Artistic collaborations with photographers, stylists, and independent designers.',
   },
 ];
 
@@ -51,7 +51,7 @@ const ServicesSection = ({ services }) => {
         <div className="services-intro">
           <span className="section-kicker">Capabilities</span>
           <h2 className="section-title">Services</h2>
-          <p className="section-subtitle">Available for premium regional and worldwide bookings</p>
+          <p className="section-subtitle">Available for commercial shoots, lookbooks, and creative collaborations</p>
         </div>
 
         <motion.div

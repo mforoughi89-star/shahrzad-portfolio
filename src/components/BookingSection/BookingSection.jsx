@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './BookingSection.css';
+import { sendBookingInquiryToTelegram } from '../../services/telegramService';
 
 const emptyForm = {
   name: '',
@@ -15,6 +16,7 @@ const emptyForm = {
 const BookingSection = ({ onSubmit }) => {
   const [formData, setFormData] = useState(emptyForm);
   const [submitStatus, setSubmitStatus] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -23,20 +25,24 @@ const BookingSection = ({ onSubmit }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus(null);
 
     try {
       if (onSubmit) {
         await onSubmit(formData);
       } else {
-        console.info('Booking inquiry ready for backend connection:', formData);
+        await sendBookingInquiryToTelegram(formData);
       }
 
       setSubmitStatus('success');
       setFormData(emptyForm);
-      setTimeout(() => setSubmitStatus(null), 5000);
+      setTimeout(() => setSubmitStatus(null), 7000);
     } catch (error) {
       setSubmitStatus('error');
       console.error('Booking submission error:', error);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -47,8 +53,8 @@ const BookingSection = ({ onSubmit }) => {
           <span className="section-kicker">Bookings</span>
           <h2 className="section-title">Create the next visual story</h2>
           <p>
-            For fashion campaigns, beauty editorials, commercial shoots, runway, and brand collaborations,
-            share the project details and the team will respond with availability.
+            For lookbooks, commercial campaigns, beauty shoots, and creative brand collaborations,
+            share your project details and I will respond with availability.
           </p>
           <div className="booking-contact-card">
             <span>Direct contact</span>
@@ -77,11 +83,11 @@ const BookingSection = ({ onSubmit }) => {
               Project Type
               <select name="projectType" value={formData.projectType} onChange={handleChange} required>
                 <option value="">Select one</option>
-                <option value="Fashion Campaign">Fashion Campaign</option>
-                <option value="Editorial">Editorial</option>
+                <option value="Commercial Shoot">Commercial Shoot</option>
+                <option value="Lookbook & E-Commerce">Lookbook & E-Commerce</option>
                 <option value="Beauty / Cosmetics">Beauty / Cosmetics</option>
-                <option value="Lookbook">Lookbook</option>
-                <option value="Runway">Runway</option>
+                <option value="Brand Campaign">Brand Campaign</option>
+                <option value="Studio & Creative Project">Studio & Creative Project</option>
               </select>
             </label>
           </div>
@@ -107,10 +113,24 @@ const BookingSection = ({ onSubmit }) => {
             <textarea name="message" value={formData.message} onChange={handleChange} rows="6" required placeholder="Tell us about the concept, usage, team, and deliverables." />
           </label>
 
-          <button className="luxury-button primary booking-submit" type="submit">Send Inquiry</button>
+          <button
+            className="luxury-button primary booking-submit"
+            type="submit"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? 'Sending Inquiry...' : 'Send Inquiry'}
+          </button>
 
-          {submitStatus === 'success' && <p className="form-status success">Inquiry prepared successfully. Backend delivery can be connected next.</p>}
-          {submitStatus === 'error' && <p className="form-status error">Something went wrong. Please try again.</p>}
+          {submitStatus === 'success' && (
+            <p className="form-status success">
+              ✨ Thank you! Your inquiry has been sent directly to Shahrzad. We will review and respond shortly.
+            </p>
+          )}
+          {submitStatus === 'error' && (
+            <p className="form-status error">
+              Unable to send inquiry automatically. Please contact directly via WhatsApp or email below.
+            </p>
+          )}
         </form>
 
         <div className="booking-alternative">

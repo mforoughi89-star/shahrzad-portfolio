@@ -57,8 +57,8 @@ export default function PresenceSection() {
 
   return (
     <section className="presence" ref={rootRef} id="presence">
-      <span className="presence-eyebrow">International Presence</span>
-      <h2 className="presence-title">Three Cities. One Signature.</h2>
+      <span className="presence-eyebrow">Locations & Availability</span>
+      <h2 className="presence-title">Regional Presence & Travel</h2>
       <span className="presence-line" />
       <div className="presence-grid">
         {CITIES.map((city, index) => (
