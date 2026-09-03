@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -7,7 +7,14 @@ import './AboutSection.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const ABOUT_DEMO_PLACEHOLDER = '/images/optimized/about-portrait.jpg';
+const ABOUT_DEMO_PLACEHOLDER = '/images/optimized/about-portrait-01.jpg';
+
+const defaultImages = [
+  '/images/optimized/about-portrait-01.jpg',
+  '/images/optimized/about-portrait-02.jpg',
+  '/images/optimized/about-portrait-03.jpg',
+  '/images/optimized/about-portrait-04.jpg',
+];
 
 const defaultData = {
   bio: 'With a fresh editorial presence and natural poise, Shahrzad brings versatility and expressive energy to commercial fashion, lookbooks, and beauty campaigns. She collaborates actively with photographers, stylists, and contemporary boutique brands.',
@@ -26,14 +33,27 @@ const defaultData = {
     'Beauty, Skincare & Cosmetics Shoots',
     'Independent Photographers & Studio Projects',
   ],
-  profileImage: '/images/optimized/about-portrait.jpg',
+  profileImage: defaultImages[0],
+  images: defaultImages,
 };
 
 const AboutSection = ({ data }) => {
   const sectionRef = useRef(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const aboutData = { ...defaultData, ...data, compCard: { ...defaultData.compCard, ...data?.compCard } };
+  const portraitImages = aboutData.images && aboutData.images.length > 0 ? aboutData.images : [aboutData.profileImage];
 
   useImageReveal(sectionRef);
+
+  const nextImage = (e) => {
+    if (e) e.stopPropagation();
+    setCurrentImageIndex((prev) => (prev + 1) % portraitImages.length);
+  };
+
+  const prevImage = (e) => {
+    if (e) e.stopPropagation();
+    setCurrentImageIndex((prev) => (prev - 1 + portraitImages.length) % portraitImages.length);
+  };
 
   const handleAboutImageError = (event) => {
     const image = event.currentTarget;
@@ -110,17 +130,78 @@ const AboutSection = ({ data }) => {
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
           viewport={{ once: true }}
+          onClick={portraitImages.length > 1 ? nextImage : undefined}
+          style={{ cursor: portraitImages.length > 1 ? 'pointer' : 'default' }}
+          title={portraitImages.length > 1 ? 'Click to view next portrait' : undefined}
         >
-          <img
-            className="about-portrait img-reveal"
-            src={aboutData.profileImage}
-            alt="Shahrzad — professional portrait"
-            width="800"
-            height="1067"
-            onError={handleAboutImageError}
-            loading="lazy"
-            decoding="async"
-          />
+          {portraitImages.map((src, index) => (
+            <img
+              key={src}
+              className={`about-portrait img-reveal ${index === currentImageIndex ? 'active' : ''}`}
+              src={src}
+              alt={`Shahrzad — professional portrait ${index + 1}`}
+              width="800"
+              height="1067"
+              onError={handleAboutImageError}
+              loading={index === 0 ? 'eager' : 'lazy'}
+              decoding="async"
+              style={{
+                position: index === 0 ? 'relative' : 'absolute',
+                top: 0,
+                left: 0,
+                opacity: index === currentImageIndex ? 1 : 0,
+                pointerEvents: index === currentImageIndex ? 'auto' : 'none',
+                transition: 'opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1)',
+              }}
+            />
+          ))}
+
+          {portraitImages.length > 1 && (
+            <>
+              <div className="about-gallery-counter">
+                {String(currentImageIndex + 1).padStart(2, '0')} / {String(portraitImages.length).padStart(2, '0')}
+              </div>
+
+              <div className="about-gallery-controls">
+                <button
+                  type="button"
+                  className="about-gallery-btn"
+                  onClick={prevImage}
+                  aria-label="Previous portrait"
+                >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="15 18 9 12 15 6" />
+                  </svg>
+                </button>
+
+                <div className="about-gallery-dots">
+                  {portraitImages.map((_, index) => (
+                    <button
+                      key={index}
+                      type="button"
+                      className={`about-gallery-dot ${index === currentImageIndex ? 'active' : ''}`}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setCurrentImageIndex(index);
+                      }}
+                      aria-label={`Go to portrait ${index + 1}`}
+                    />
+                  ))}
+                </div>
+
+                <button
+                  type="button"
+                  className="about-gallery-btn"
+                  onClick={nextImage}
+                  aria-label="Next portrait"
+                >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="9 18 15 12 9 6" />
+                  </svg>
+                </button>
+              </div>
+            </>
+          )}
         </motion.div>
       </div>
     </section>
