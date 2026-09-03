@@ -44,12 +44,12 @@ const defaultChapters = [
   {
     title: 'Studio & Monochrome',
     description: 'Timeless minimalism. Classic studio work with focus on silhouette, form, and light.',
-    layout: 'editorial',
+    layout: 'grid',
     images: [
       { url: realImage('studio-01.jpg'), alt: 'Shahrzad studio portrait 1', caption: 'Form Study' },
       { url: realImage('studio-02.jpg'), alt: 'Shahrzad studio portrait 2', caption: 'Soft Contrast' },
       { url: realImage('studio-03.jpg'), alt: 'Shahrzad monochrome portrait 3', caption: 'Beauty Closeup' },
-      { url: realImage('studio-landscape.jpg'), alt: 'Shahrzad studio landscape frame 4', caption: 'Timeless Frame' },
+      { url: realImage('studio-landscape.jpg'), alt: 'Shahrzad studio portrait 4', caption: 'Timeless Form' },
     ],
   },
   {

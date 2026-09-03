@@ -42,7 +42,7 @@ const Chapter = ({ title, description, images, layout = 'grid', number }) => {
     return () => ctx.revert();
   }, []);
 
-  const chapterModifier = title === 'Studio & Monochrome' ? ' chapter--studio' : '';
+  const chapterModifier = '';
 
   return (
     <article ref={chapterRef} className={`chapter${chapterModifier}`}>

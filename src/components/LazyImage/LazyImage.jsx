@@ -39,6 +39,7 @@ const LazyImage = ({
         ref={imageRef}
         src={currentSrc}
         alt={alt}
+        className={imageClassName}
         onLoad={handleLoad}
         onError={() => {
           if (currentSrc !== FALLBACK_IMAGE) {
