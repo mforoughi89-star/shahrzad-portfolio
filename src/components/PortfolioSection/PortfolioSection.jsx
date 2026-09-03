@@ -31,16 +31,14 @@ const defaultChapters = [
     ],
   },
   {
-    title: 'Interiors & Luxury Spaces',
-    description: 'Curated settings in refined environments—galleries, hotels, and hidden cafés.',
+    title: 'Interiors & Refined Spaces',
+    description: 'Curated settings in refined environments—galleries, hotels, and architectural spaces.',
     layout: 'grid',
     images: [
       { url: realImage('interiors-01.jpg'), alt: 'Shahrzad interior editorial portrait 1', caption: 'Gallery Light' },
-      /* Preserved for future placement:
-      { url: realImage('interiors-02.jpg'), alt: 'Shahrzad interior editorial portrait 2', caption: 'Quiet Luxury' },
-      { url: realImage('interiors-04.jpg'), alt: 'Shahrzad luxury space editorial portrait', caption: 'Private Salon' },
-      */
+      { url: realImage('interiors-02.jpg'), alt: 'Shahrzad interior editorial portrait 2', caption: 'Architecture & Form' },
       { url: realImage('interiors-03.jpg'), alt: 'Shahrzad interior editorial portrait 3', caption: 'Hotel Story' },
+      { url: realImage('interiors-04.jpg'), alt: 'Shahrzad luxury space editorial portrait 4', caption: 'Private Salon' },
     ],
   },
   {
@@ -48,16 +46,10 @@ const defaultChapters = [
     description: 'Timeless minimalism. Classic studio work with focus on silhouette, form, and light.',
     layout: 'editorial',
     images: [
-      /* Preserved files for future placement:
       { url: realImage('studio-01.jpg'), alt: 'Shahrzad studio portrait 1', caption: 'Form Study' },
       { url: realImage('studio-02.jpg'), alt: 'Shahrzad studio portrait 2', caption: 'Soft Contrast' },
-      { url: realImage('studio-03.jpg'), alt: 'Shahrzad monochrome portrait', caption: 'Beauty Closeup' },
-      { url: realImage('studio-landscape.jpg'), alt: 'Shahrzad studio landscape frame', caption: 'Timeless Frame' },
-      */
-      { url: '', alt: 'Studio Look 01', caption: 'Form Study' },
-      { url: '', alt: 'Studio Look 02', caption: 'Soft Contrast' },
-      { url: '', alt: 'Studio Look 03', caption: 'Beauty Closeup' },
-      { url: '', alt: 'Studio Look 04', caption: 'Timeless Frame' },
+      { url: realImage('studio-03.jpg'), alt: 'Shahrzad monochrome portrait 3', caption: 'Beauty Closeup' },
+      { url: realImage('studio-landscape.jpg'), alt: 'Shahrzad studio landscape frame 4', caption: 'Timeless Frame' },
     ],
   },
   {
@@ -65,16 +57,10 @@ const defaultChapters = [
     description: 'Bold palettes, vivid scenes, and dynamic compositions that command attention.',
     layout: 'grid',
     images: [
-      /* Preserved files for future placement:
       { url: realImage('color-01.jpg'), alt: 'Shahrzad colorful outfit 1', caption: 'Vivid Mood' },
       { url: realImage('color-02.jpg'), alt: 'Shahrzad colorful outfit 2', caption: 'Color Field' },
       { url: realImage('color-03.jpg'), alt: 'Shahrzad colorful outfit 3', caption: 'Dynamic Palette' },
-      { url: realImage('color-04.jpg'), alt: 'Shahrzad bold color statement', caption: 'Statement' },
-      */
-      { url: '', alt: 'Color Look 01', caption: 'Vivid Mood' },
-      { url: '', alt: 'Color Look 02', caption: 'Color Field' },
-      { url: '', alt: 'Color Look 03', caption: 'Dynamic Palette' },
-      { url: '', alt: 'Color Look 04', caption: 'Statement' },
+      { url: realImage('color-04.jpg'), alt: 'Shahrzad bold color statement 4', caption: 'Statement' },
     ],
   },
 ];
