@@ -76,7 +76,7 @@ const HeroSection = ({ data, loading = false }) => {
       <div className="hero-ornament" aria-hidden="true">01</div>
       <div className="container hero-container">
         <div ref={textRef} className="hero-text">
-          <span className="hero-kicker">Luxury Model Portfolio</span>
+          <span className="hero-kicker">Model Portfolio</span>
           <h1 className="hero-name">{data?.name || 'Shahrzad'}</h1>
           <p className="hero-subtitle">{data?.subtitle || 'Fashion & Commercial Model'}</p>
           <p className="hero-tagline">
