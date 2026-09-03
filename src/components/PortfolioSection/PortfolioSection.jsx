@@ -36,9 +36,11 @@ const defaultChapters = [
     layout: 'grid',
     images: [
       { url: realImage('interiors-01.jpg'), alt: 'Shahrzad interior editorial portrait 1', caption: 'Gallery Light' },
+      /* Preserved for future placement:
       { url: realImage('interiors-02.jpg'), alt: 'Shahrzad interior editorial portrait 2', caption: 'Quiet Luxury' },
-      { url: realImage('interiors-03.jpg'), alt: 'Shahrzad interior editorial portrait 3', caption: 'Hotel Story' },
       { url: realImage('interiors-04.jpg'), alt: 'Shahrzad luxury space editorial portrait', caption: 'Private Salon' },
+      */
+      { url: realImage('interiors-03.jpg'), alt: 'Shahrzad interior editorial portrait 3', caption: 'Hotel Story' },
     ],
   },
   {
