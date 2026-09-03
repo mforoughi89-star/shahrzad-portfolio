@@ -10,7 +10,7 @@ const realImage = (filename) => `/images/optimized/${filename}`;
 
 const realImageFallbacks = [
   realImage('urban-05.jpg'),
-  realImage('urban-02.jpg'),
+  realImage('urban-06.jpg'),
   realImage('interiors-01.jpg'),
 ];
 
@@ -20,12 +20,14 @@ const defaultChapters = [
     description: 'Contemporary fashion meets architectural landscapes and metropolitan energy.',
     layout: 'horizontal',
     images: [
+      /* Preserved for future placement in other sections:
       { url: realImage('urban-01.jpg'), alt: 'Shahrzad urban fashion look 1', caption: 'Look 01' },
       { url: realImage('urban-02.jpg'), alt: 'Shahrzad urban fashion look 2', caption: 'Look 02' },
       { url: realImage('urban-03.jpg'), alt: 'Shahrzad urban fashion look 3', caption: 'Look 03' },
-      { url: realImage('urban-04.jpg'), alt: 'Shahrzad urban fashion look 4', caption: 'Look 04' },
-      { url: realImage('urban-05.jpg'), alt: 'Shahrzad urban fashion look 5', caption: 'Look 05' },
-      { url: realImage('urban-06.jpg'), alt: 'Shahrzad urban fashion look 6', caption: 'Look 06' },
+      */
+      { url: realImage('urban-04.jpg'), alt: 'Shahrzad urban fashion look 4', caption: 'Look 01' },
+      { url: realImage('urban-05.jpg'), alt: 'Shahrzad urban fashion look 5', caption: 'Look 02' },
+      { url: realImage('urban-06.jpg'), alt: 'Shahrzad urban fashion look 6', caption: 'Look 03' },
     ],
   },
   {
