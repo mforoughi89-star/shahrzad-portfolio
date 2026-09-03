@@ -1,0 +1,19 @@
+{
+  "name": "Shahrzad — Model Portfolio",
+  "short_name": "Shahrzad",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#050708",
+  "background_color": "#050708",
+  "display": "standalone"
+}
