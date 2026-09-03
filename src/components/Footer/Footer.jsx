@@ -10,7 +10,7 @@ const Footer = () => {
           <p>Fashion, beauty, and commercial model portfolio.</p>
         </div>
         <div className="footer-links">
-          <a href="mailto:booking@shahrzad.ir">Email</a>
+          <a href="mailto:booking@shahrzd.ir">Email</a>
           <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">Instagram</a>
           <a href="#hero">Back to top</a>
         </div>
