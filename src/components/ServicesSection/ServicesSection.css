@@ -2,7 +2,7 @@
   padding: 100px 0;
   background:
     linear-gradient(rgba(5, 7, 8, 0.82), rgba(5, 7, 8, 0.94)),
-    url('https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=1800&q=80') center / cover fixed;
+    url('/images/optimized/services-bg.jpg') center / cover fixed;
 }
 
 .services-intro {
