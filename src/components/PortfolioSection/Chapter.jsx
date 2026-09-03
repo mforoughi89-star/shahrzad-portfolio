@@ -56,15 +56,42 @@ const Chapter = ({ title, description, images, layout = 'grid', number }) => {
       <div className={`chapter-grid ${layout}`}>
         {images.map((image, index) => (
           <figure key={`${title}-${index}`} className="chapter-image-wrapper">
-            <LazyImage
-              src={image.url}
-              alt={image.alt || `${title} ${index + 1}`}
-              className="chapter-lazy-image img-reveal"
-              imageClassName="chapter-image"
-            />
-            <figcaption className="chapter-image-overlay">
-              <span>{image.caption || title}</span>
-            </figcaption>
+            {image.url ? (
+              <>
+                <LazyImage
+                  src={image.url}
+                  alt={image.alt || `${title} ${index + 1}`}
+                  className="chapter-lazy-image img-reveal"
+                  imageClassName="chapter-image"
+                />
+                <figcaption className="chapter-image-overlay">
+                  <span>{image.caption || title}</span>
+                </figcaption>
+              </>
+            ) : (
+              <div className="chapter-placeholder">
+                <div className="chapter-placeholder-inner">
+                  <span className="placeholder-number">{String(index + 1).padStart(2, '0')}</span>
+                  <svg
+                    className="placeholder-icon"
+                    width="22"
+                    height="22"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                  >
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <polyline points="21 15 16 10 5 21" />
+                  </svg>
+                  <span className="placeholder-label">{image.caption || 'Upcoming Look'}</span>
+                </div>
+              </div>
+            )}
           </figure>
         ))}
       </div>

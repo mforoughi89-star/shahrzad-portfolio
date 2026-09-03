@@ -175,6 +175,77 @@
   display: block;
 }
 
+/* ── Empty Frame Placeholder ── */
+.chapter-placeholder {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 3 / 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(145deg, rgba(245, 243, 238, 0.03) 0%, rgba(10, 11, 14, 0.75) 100%);
+  border: 1px dashed rgba(212, 175, 55, 0.22);
+  transition: border-color 0.4s ease, background 0.4s ease;
+  user-select: none;
+}
+
+.chapter-image-wrapper:hover .chapter-placeholder {
+  border-color: rgba(212, 175, 55, 0.6);
+  background: linear-gradient(145deg, rgba(212, 175, 55, 0.06) 0%, rgba(10, 11, 14, 0.85) 100%);
+}
+
+.chapter-placeholder-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  text-align: center;
+  padding: 24px;
+}
+
+.placeholder-number {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px;
+  letter-spacing: 0.18em;
+  color: rgba(212, 175, 55, 0.55);
+}
+
+.placeholder-icon {
+  color: rgba(212, 175, 55, 0.4);
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.chapter-image-wrapper:hover .placeholder-icon {
+  color: var(--gold);
+  transform: scale(1.08);
+}
+
+.placeholder-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(245, 243, 238, 0.6);
+  transition: color 0.3s ease;
+}
+
+.chapter-image-wrapper:hover .placeholder-label {
+  color: var(--gold);
+}
+
+.chapter-grid.editorial .chapter-image-wrapper:nth-child(4) .chapter-placeholder {
+  aspect-ratio: 16 / 9;
+}
+
+.chapter--studio .chapter-grid > :nth-child(2) .chapter-placeholder {
+  aspect-ratio: 3 / 2;
+}
+
+.chapter--studio .chapter-grid > :nth-child(3) .chapter-placeholder {
+  aspect-ratio: 21 / 9;
+}
+
 /* ── Editorial hover ── */
 .chapter-image-wrapper img,
 .chapter-image-wrapper .chapter-image {
