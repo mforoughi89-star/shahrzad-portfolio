@@ -58,7 +58,7 @@ const BookingSection = ({ onSubmit }) => {
           </p>
           <div className="booking-contact-card">
             <span>Direct contact</span>
-            <a href="mailto:booking@shahrzad.studio">booking@shahrzad.studio</a>
+            <a href="mailto:booking@shahrzad.ir">booking@shahrzad.ir</a>
           </div>
         </div>
 
